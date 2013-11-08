@@ -26,11 +26,11 @@ class MotorDriver:
       GPIO.setup("P9_17", GPIO.IN)
       print "Motor driver init complete"
 
-   def setDirection(self, left, right)
+   def setDirection(self, left, right):
       # Don't allow a direction change if the motor is on
       print "Direction change not yet supported"
 
-   def setSpeed(self, left, right)
+   def setSpeed(self, left, right):
       print "Motor driver speed change"
       PWM.set_frequency("P9_14", left)
 
