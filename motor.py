@@ -21,7 +21,7 @@ class Motor:
          self._speed = 100
       else:
          self._speed = speed
-      self._driver.setSpeed(self._speed, 0)
+      self._driver.setSpeed(self._speed)
 
    def setDirCw(self):
       self._direction = "CW"
