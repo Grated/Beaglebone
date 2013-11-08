@@ -8,7 +8,10 @@ class Motor:
    # <private>
    _speed = 0
    _direction = "CW"
-   _driver = MotorDriver()
+   _driver = 0
+
+   def __init__(self, driver):
+      self._driver = driver
 
    # <public>
    # Sets the speed for a motor, limited to 0 through 100 inclusive.
@@ -35,12 +38,16 @@ class Motor:
 class MotorMaster:
    """ Controls multiple motors """
    # <private>
-   _left = Motor()
-   _right = Motor()
+   _left = 0
+   _right = 0
+   _leftDriver = MotorDriver()
+   _rightDriver = 0 #MotorDriver()
 
    # <public>
    # Initialize motors to forward, stopped
    def __init__(self):
+      self._left = Motor(self._leftDriver)
+      self._right = Motor(self._rightDriver)
       self._left.setDirCw()
       self._left.setSpeed(0)
       self._right.setDirCcw()
@@ -73,3 +80,6 @@ class MotorMaster:
    def getRightDirection(self):
       return self._right.getDirection()
 
+   def __exit__(self, type, value, traceback)
+      self._leftDriver.shutdown()
+      #self._rightDriver.shutdown()
