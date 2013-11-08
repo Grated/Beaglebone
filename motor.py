@@ -80,6 +80,6 @@ class MotorMaster:
    def getRightDirection(self):
       return self._right.getDirection()
 
-   def __exit__(self, type, value, traceback)
+   def __exit__(self, type, value, traceback):
       self._leftDriver.shutdown()
       #self._rightDriver.shutdown()
