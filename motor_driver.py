@@ -18,7 +18,13 @@ class MotorDriver:
 
       # First, turn off the enable pin
       #PWM.start(channel, duty, freq=200, polarity=0)
-      PWM.start(self._pin_en, 0.0)
+      PWM.start(self._pin_en, 0)
+
+      # I'm concerned about the enable pin not being stable when we startup.
+      # For the sake of safety give it a moment to stop.
+      # TODO: Enable the feedback pins first and verify the motor
+      # is stopped before setting the direction.
+      time.sleep(0.5)
 
       # Now set the direction pin as an output and initialize it
       GPIO.setup(self._pin_dir, GPIO.OUT)
@@ -35,10 +41,7 @@ class MotorDriver:
 
    def setSpeed(self, speed):
       print "Motor driver speed change"
-      if (speed > 0):
-         PWM.set_duty_cycle(self._pin_en, speed)
-      else:
-         PWM.stop(self._pin_en)
+      PWM.set_duty_cycle(self._pin_en, speed)
 
    def shutdown(self):
       GPIO.cleanup()

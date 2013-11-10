@@ -96,4 +96,4 @@ class MotorMaster:
 
    def __exit__(self, type, value, traceback):
       self._leftDriver.shutdown()
-      #self._rightDriver.shutdown()
+      self._rightDriver.shutdown()
