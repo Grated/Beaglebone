@@ -53,7 +53,8 @@ class RobotNetworkService(threading.Thread):
       #host = socket.gethostname() # Get local machine name
       port = 12345                # Reserve a port for your service.
       try:
-         s.bind((host, port))        # Bind to the port
+         #s.bind((host, port))        # Bind to the port
+         s.bind(('', port))        # Bind to the port
          s.listen(1)                 # Now wait for client connection.
       except socket.error as msg:
          s.close()
