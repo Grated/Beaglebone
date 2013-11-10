@@ -49,7 +49,8 @@ class RobotNetworkService(threading.Thread):
 
       s = socket.socket()         # Create a socket object
       s.settimeout(1)             # Default timeout of 1 second
-      host = socket.gethostname() # Get local machine name
+      # Commenting out the next line to remove restrictions on who can connect.
+      #host = socket.gethostname() # Get local machine name
       port = 12345                # Reserve a port for your service.
       try:
          s.bind((host, port))        # Bind to the port
