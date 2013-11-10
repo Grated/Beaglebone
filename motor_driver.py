@@ -18,7 +18,7 @@ class MotorDriver:
 
       # First, turn off the enable pin
       #PWM.start(channel, duty, freq=200, polarity=0)
-      PWM.stop(self._pin_en)
+      PWM.start(self._pin_en, 0.0)
 
       # Now set the direction pin as an output and initialize it
       GPIO.setup(self._pin_dir, GPIO.OUT)
@@ -36,7 +36,7 @@ class MotorDriver:
    def setSpeed(self, speed):
       print "Motor driver speed change"
       if (speed > 0):
-         PWM.set_frequency(self._pin_en, speed)
+         PWM.set_duty_cycle(self._pin_en, speed)
       else:
          PWM.stop(self._pin_en)
 
