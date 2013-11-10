@@ -2,7 +2,8 @@ import Adafruit_BBIO.PWM as PWM
 import Adafruit_BBIO.GPIO as GPIO
 import time
 
-
+# This class contains low level code for driving PMOD HB5 pins
+# using the BeagleBone Black
 class MotorDriver:
    _pin_dir = 0
    _pin_en = 0
