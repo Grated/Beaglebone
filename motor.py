@@ -35,13 +35,27 @@ class Motor:
    def getDirection(self):
       return self._direction
 
+#   We will use the following pins for the left motor:
+#   <Func>  <BB Website>   <pin>    <GPIO Num>  <Mapping>
+#   LM Dir: gpio_30        p9:11    30          gpio0[30]
+#   LM En:  PWM1A          p9:14    50          gpio1[18]
+#   LM SA:  gpio_48        p9:15    48          gpio1[16]
+#   LM SB:  gpio0_5        p9:17    5           gpio0[5]
+
+#   We will use the following pins for the right motor:
+#   <Func>  <BB Website>   <pin>    <GPIO Num>  <Mapping>
+#   RM Dir: gpio1_28       p9:12    60          gpio1[28]
+#   RM En:  PWM1B          p9:16    51          gpio1[19]
+#   RM SA:  gpio0_31       p9:13    31          gpio0[31]
+#   RM SB:  gpio0_4        p9:18    4           gpio0[4]
+
 class MotorMaster:
    """ Controls multiple motors """
    # <private>
    _left = 0
    _right = 0
-   _leftDriver = MotorDriver()
-   _rightDriver = 0 #MotorDriver()
+   _leftDriver = MotorDriver("P9_11", "P9_14", "P9_15", "P9_17")
+   _rightDriver = MotorDriver("P9_12", "P9_16", "P9_13", "P9_18")
 
    # <public>
    # Initialize motors to forward, stopped

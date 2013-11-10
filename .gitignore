@@ -2,6 +2,7 @@
 
 # VI temp files 
 *~
+*\.swp
 
 # C extensions
 *.so
