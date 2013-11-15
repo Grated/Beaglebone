@@ -8,10 +8,6 @@ from motor import MotorMaster # Import motor module
 # Contains the thread used to update motor state.
 # 
 
-# Slews to a speed
-def _slew(self, target, current):
-   if (target < current):
-
 # Accepts a queue that sends motor commands.
 # Commands are used to update the motor state, if no command
 # is available will sleep a bit and see if anything needs to 
