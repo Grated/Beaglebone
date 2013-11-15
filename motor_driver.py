@@ -94,7 +94,8 @@ class MotorDriver:
       if (self._curDir != self._targetDir):
          # Switching from forwards to backwards
          self._setSpeed(0)
-         self._setDirection(self._targetDir)
+         if (self.isStopped()):
+            self._setDirection(self._targetDir)
       elif (self._curSpeed != self._targetSpeed):
          # No direction change, apply any speed changes
          self._setSpeed(self._targetSpeed)
