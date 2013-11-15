@@ -61,6 +61,14 @@ class MotorDriver:
       assert speed <= 100
       assert speed >= 0
       print "Motor driver speed change"
+      # Slew to the speed, sudden increases in speed seem to 
+      # cause a brown out.
+      # We don't need to slew when slowing down.
+      if (speed > self._curSpeed):
+         # Speeding up!
+         if ((speed - self.curSpeed) > 10):
+            # I just picked 10 because it's nice and round
+            speed = self.curSpeed + 10
       PWM.set_duty_cycle(self._pin_en, speed)
       self._curSpeed = speed
 
