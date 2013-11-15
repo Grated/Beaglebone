@@ -94,6 +94,11 @@ class MotorMaster:
    def getRightDirection(self):
       return self._right.getDirection()
 
+   def updateMotorState(self):
+      self._leftDriver.updateState()
+      self._rightDriver.updateState()
+
    def __exit__(self, type, value, traceback):
       self._leftDriver.shutdown()
       self._rightDriver.shutdown()
+

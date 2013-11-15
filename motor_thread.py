@@ -8,6 +8,10 @@ from motor import MotorMaster # Import motor module
 # Contains the thread used to update motor state.
 # 
 
+# Slews to a speed
+def _slew(self, target, current):
+   if (target < current):
+
 # Accepts a queue that sends motor commands.
 # Commands are used to update the motor state, if no command
 # is available will sleep a bit and see if anything needs to 
@@ -27,6 +31,7 @@ class MotorThread:
 
    def _run(self):
       print 'Motor thread running'
+      
       while (self._running == True):
          time.sleep(0.5)
          if (self._cmdQueue.empty() == False):
@@ -50,6 +55,9 @@ class MotorThread:
                   print 'Motor thread: Incorrect arguments for motor command'
             else:
                print 'Motor thread: Invalid command'
+         # Done processing the command queue
+         # Call the motor update routine
+         self._motors.updateMotorState()
       print 'Motor thread exit'
 
    # Starts the thread
