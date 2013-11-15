@@ -51,8 +51,10 @@ class MotorDriver:
       # Set the direction!
       if (direction > 0):
          GPIO.output(self._pin_dir, GPIO.HIGH)
+         self._curDir = 1
       else
          GPIO.output(self._pin_dir, GPIO.LOW)
+         self._curDir = 0
 
    # speed must be between 0 and 100 inclusive
    def _setSpeed(self, speed):
@@ -84,10 +86,7 @@ class MotorDriver:
 
    # Performs any pending speed or direction changes.
    # Reads motor feedback sensors.
-   def updateState(self, speed):
-      # Update the target speed
-      self._targetSpeed = speed
-
+   def updateState(selfd):
       # Update hbridge sensor feedback
       # TODO Update the sensor
 
