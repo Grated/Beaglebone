@@ -3,7 +3,7 @@
 import threading
 import Queue                  # Queue to pass data safely between threads
 import time                   # for sleep
-from motor import MotorMaster # Import motor module
+from tantrum_motors import TantrumMotors # Import motor module
 
 # Contains the thread used to update motor state.
 # 
@@ -17,7 +17,7 @@ class MotorThread:
    #<private>
    _cmdQueue = 0
    _respQueue = 0
-   _motors = MotorMaster()
+   _motors = TantrumMotors()
    _running = False
    _TheThread = 0
 
@@ -29,7 +29,8 @@ class MotorThread:
       print 'Motor thread running'
       
       while (self._running == True):
-         time.sleep(0.5)
+         time.sleep(0.5)  # Sleep to allow other threads time.
+
          if (self._cmdQueue.empty() == False):
             cmd = self._cmdQueue.get_nowait()
             print 'Motor thread received: ' + cmd
@@ -38,19 +39,20 @@ class MotorThread:
                if (len(words) == 3):
                   self._motors.setSpeed(words[1], words[2])
                elif (len(words) == 2 and words[1] == "status"):
-                  outstring = 'Left speed: ' + str(self._motors.getLeftSpeed())
+                  outstring = 'Front speed: ' + str(self._motors.getFrontSpeed())
                   outstring += '\n'
-                  outstring += 'Left dir: ' + self._motors.getLeftDirection()
+                  outstring += 'Front dir: ' + self._motors.getFrontDirection()
                   outstring += '\n'
-                  outstring += 'Right speed: ' + str(self._motors.getRightSpeed())
+                  outstring += 'Rear speed: ' + str(self._motors.getRearSpeed())
                   outstring += '\n'
-                  outstring += 'Right dir: ' + self._motors.getRightDirection()
+                  outstring += 'Rear dir: ' + self._motors.getRearDirection()
                   outstring += '\n'
                   self._respQueue.put(outstring)
                else:
                   print 'Motor thread: Incorrect arguments for motor command'
             else:
                print 'Motor thread: Invalid command'
+
          # Done processing the command queue
          # Call the motor update routine
          self._motors.updateMotorState()

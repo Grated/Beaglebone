@@ -5,7 +5,7 @@ import threading           # Import threads
 import time                # for sleep
 
 s = socket.socket()         # Create a socket object
-host = "192.168.1.102" # Get local machine name
+host = "192.168.1.118"      # Get local machine name
 port = 12345                # Reserve a port for your service.
 
 # Routine for receiving messages from the server.

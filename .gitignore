@@ -7,6 +7,9 @@
 # C extensions
 *.so
 
+# PyCharm stuff
+.idea/*
+
 # Packages
 *.egg
 *.egg-info
