@@ -51,9 +51,9 @@ class TantrumMotors:
 
         self._rear.setSpeed(rear)
         if (rear < 0):
-            self._rear.setDirCw()
-        else:
             self._rear.setDirCcw()
+        else:
+            self._rear.setDirCw()
 
     def getFrontSpeed(self):
         return self._front.getSpeed()
